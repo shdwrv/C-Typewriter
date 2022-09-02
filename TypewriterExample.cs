@@ -41,6 +41,7 @@ namespace typewriter
                     Application.DoEvents();
                 }
             }
+
             int length = text.Length;   // Length of text, to measure loops.
             string written = "";        // Already written text.
             string currentletter = "";  // Current letter to append written text with
@@ -49,14 +50,22 @@ namespace typewriter
             do
             {
                 currentletter = text[currentlength].ToString();     // Current letter equals current index, string.
+
                 if (currentletter != " ")                           // If current letter is space, do not wait ( optional, i thought it looks better )
                     Wait(delay);                                    // Utilizing previously defined wait, for the next letter.
-                written = written + currentletter;                  // Written text appended by current letter.
 
                 currentlength = currentlength + 1;                  // Current index increases by one.
+
+                written = written + currentletter;                  // Written text appended by current letter.
                 Console.Write(written);                             // Logging current text.
                 // If you want the typewriter to target an element, like a label, replace line above with:
                 label1.Text = written;
+
+                // on a side note, if someone wants to contribute
+                // i would like to know how can i let the user pick an element
+                // that he would like to target when calling the function
+                // like:
+                // Typewriter(textBox2.Text, Convert.ToInt32(textBox1.Text), label1);
             }
             while (length != currentlength);                        // Repeat until length is equal current letter.
         }

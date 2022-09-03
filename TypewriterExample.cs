@@ -11,14 +11,15 @@ namespace typewriter
             InitializeComponent();
         }
 
-        private void Typewriter(string text, int delay, string controlname)
+        private void Typewriter(string controlname, string text, int delay)
         {
             // Typewriter function by shdwrv
             // Call example:
             // private void button1_Click(object sender, EventArgs e)
             // {
-            //     Typewriter(label1.Text, 100);
+            //     Typewriter("label1", textBox1.Text, 100);
             // }
+            // This will cause label 1 to be amended with next letter of textBox1.Text each 100 milliseconds.
 
             void Wait(int milliseconds)
             {
@@ -43,11 +44,11 @@ namespace typewriter
                 }
             }
 
-            Control ctrl = this.Controls[controlname];
-            int length = text.Length;   // Length of text, to measure loops.
-            string written = "";        // Already written text.
-            string currentletter = "";  // Current letter to append written text with
-            int currentlength = 0;      // Current letter index.
+            Control ctrl = this.Controls[controlname];  // Control to change now introduced as "ctrl".
+            int length = text.Length;                   // Length of text, to measure loops.
+            string written = "";                        // Already written text.
+            string currentletter = "";                  // Current letter to append written text with
+            int currentlength = 0;                      // Current letter index.
 
             do
             {
@@ -59,14 +60,14 @@ namespace typewriter
 
                 written = written + currentletter;                  // Written text appended by current letter.
                 //Console.Write(written);                           // (Optional) Logging current text.
-                ctrl.Text = written;                                // !!! (Optional) Updating label with each letter, this is probably what you want to do.
+                ctrl.Text = written;                                // !!! (Optional) Updating label with each letter, this is probably what you want to do. !!!
             }
             while (length != currentlength);                        // Repeat until length is equal current letter.
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Typewriter(textBox2.Text, Convert.ToInt32(textBox1.Text), "label2");
+            Typewriter("label1", textBox2.Text, Convert.ToInt32(textBox1.Text));
         }
     }
 }
